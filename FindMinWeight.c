@@ -10,7 +10,7 @@
 /// \param[in]  codes[]   an array of codes, represented as longs
 /// \param[in]  len       length of above array
 
-weightedCode distance(unsigned long codes[], unsigned len)
+struct weightedCode distance(unsigned long codes[], unsigned len)
 {
 
 	// i loops over integers from 0 to 2^len
@@ -21,7 +21,7 @@ weightedCode distance(unsigned long codes[], unsigned len)
 
 	unsigned long current, size = power(2, len);
 	unsigned minimum, wt;
-	weightedCode minimizer;
+	struct weightedCode minimizer;
 	for (unsigned long i = 1; i < size; i++)
 	{
 		current = 0;	
@@ -30,7 +30,7 @@ weightedCode distance(unsigned long codes[], unsigned len)
 		{
 			if ((i >> j) & 1)
 			{
-				current ^= L[j];
+				current ^= codes[j];
 			}
 		}
 
@@ -39,12 +39,12 @@ weightedCode distance(unsigned long codes[], unsigned len)
 		if ((current != 0 && wt < minimum) || i == 1)
 		{
 			minimum = wt;
-			weightedCode.weight = minimum;
-			weightedCode.code = current;
+			minimizer.weight = minimum;
+			minimizer.code = current;
 		}
 	}
 
-	return weightedCode;
+	return minimizer;
 }
 
 // Computes the number of 1 bits in the
@@ -64,10 +64,9 @@ int weight(unsigned long a)
 
 unsigned long power(unsigned a, unsigned n)
 {
-	int i = 1;
 	unsigned long base = a;
 	unsigned long total = 1;
-	for (i = 1; i <= n; i++)
+	for (unsigned i = 1; i <= n; i++)
 	{
 		total *= base;
 	}
