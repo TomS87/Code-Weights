@@ -7,5 +7,5 @@ struct weightedCode
 };
 
 int weight(unsigned long code);
-weightedCode distance(unsigned long codes[], unsigned len);
+struct weightedCode distance(unsigned long codes[], unsigned len);
 unsigned long power(unsigned a, unsigned n);
